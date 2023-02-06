@@ -23,7 +23,20 @@ Let $\mathbf{X}=(\mathbf{x}_0\vert\dots\vert\mathbf{x}_p)$ and $\hat{\mathbf{y}}
 ## Distributional Inferences
 
 Assume $y_i$ are uncorrelated with a constant variance $\sigma^2$ and the $x_i$ are fixed. 
+
 **Definition (Variance-Covariance Matrix)**
 $$\text{Var}(\hat{\beta})=(\mathbf{X}^T\mathbf{X})^{-1}\sigma^2$$
 which can be approximated by the unbiased estimator
 $$\hat{\sigma}^2=\frac{1}{N-p-1}\sum_{i=1}^N(y_i-\hat{y}_i)^2$$
+
+**Further Assumptions**:
+- Assume the $f(X)=\beta_0+\sum_{j=1}^pX_j\beta_j$ is the correct model for $E(Y\vert X)$
+- The deviation of $Y$ around its mean is Gaussian
+
+$$Y=E(Y\vert X_1,\dots,X_p)+\epsilon\text{ where }\epsilon\sim N(0,\sigma^2)$$
+
+From these assumptions
+- $\hat{\beta}\sim N(\beta,(\mathbf{X}^T\mathbf{X})^{-1}\sigma^2)$
+- $(N-p-1)\hat{\sigma}^2\sim\sigma^2\chi^2_{N-p-1}$
+- $\hat{\beta}$ and $\hat{\sigma}^2$ are independent
+
