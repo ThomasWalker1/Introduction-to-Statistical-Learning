@@ -42,5 +42,30 @@ From these assumptions
 
 ## Hypothesis Testing
 
-To test whether a particular parameter is $0$ we form the standardized coefficient
+### Test if a parameter is $0$
+$$H_0:\beta_j=0\quad H_1:\beta_j\neq 0$$
+Define *Z-score*
 $$z_j=\frac{\hat{\beta}_j}{\hat{\sigma}\sqrt{v_j}}\text{ where }v_j=(\mathbf{X}^T\mathbf{X})^{-1}_{jj}$$
+It can be shown that
+$$z_j\sim t_{N-p-1}$$
+when $\sigma^2$ is unknown and approximated by $\hat{\sigma}$. Therefore, $H_0$ is rejected for high absolute values of the *Z-score*
+
+### Testing whether a collection of parameters are $0$
+
+$$H_0:\left(\beta_{n(1)},\dots,\beta_{n(p_1)}\right)^T=\mathbf{0}\quad H_1:\left(\beta_{n(1)},\dots,\beta_{n(p_1)}\right)^T\neq\mathbf{0}$$
+
+Use the $F$-statistics
+$$F=\frac{\left(\text{RSS}_0-\text{RSS}_1\right)/(p_1-p_0)}{\text{RSS}_1/(N-p_1-1)}$$
+- $\text{RSS}_0$: Residual sum-of-squares of fitted model excluding $\beta_{n(i)}$ (which has $p_0$+1 parameters)
+- $\text{RSS}_1$: Residual sum-of-squares of fitted model including $\beta_{n(i)}$ (which has $p_1+1$) parameters
+
+$$F\sim F_{p_1-p_0, N-p_1-1}$$
+
+## Confidence Intervals
+
+When use *Z-scores* the $1-\alpha$ confidence interval is given by
+$$\left(\hat{\beta}_j-z^{1-\frac{\alpha}{2}}\sqrt{v_j}\hat{\sigma},\hat{\beta}_j+z^{1-\frac{\alpha}{2}}\sqrt{v_j}\hat{\sigma}\right)$$
+where $z^{1-\frac{\alpha}{2}}$ is the $1-\frac{\alpha}{2}$ percentile of the normal distribution. 
+
+The confidence set for the parameter vector $\beta$ is approximated by
+$$C_{\beta}=\left\{\beta\vert\left(\hat{\beta}-\beta)^T\mathbf{X}^T\mathbf{X}\left(\hat{\beta}-\beta\right)\leq\hat{\sigma}(\chi^2_{p+1})^{(1-\frac{\alpha}{2})}\right)\right\}$$
