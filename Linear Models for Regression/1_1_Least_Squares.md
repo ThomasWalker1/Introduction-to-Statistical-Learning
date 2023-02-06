@@ -40,3 +40,7 @@ From these assumptions
 - $(N-p-1)\hat{\sigma}^2\sim\sigma^2\chi^2_{N-p-1}$
 - $\hat{\beta}$ and $\hat{\sigma}^2$ are independent
 
+## Hypothesis Testing
+
+To test whether a particular parameter is $0$ we form the standardized coefficient
+$$z_j=\frac{\hat{\beta}_j}{\hat{\sigma}\sqrt{v_j}}\text{ where }v_j=(\mathbf{X}^T\mathbf{X})^{-1}_{jj}$$
