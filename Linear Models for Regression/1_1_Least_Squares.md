@@ -19,3 +19,11 @@ $$\hat{\beta}(\mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^T\mathbf{y}$$
 ## Geometrical Interpretation
 
 Let $\mathbf{X}=(\mathbf{x}_0\vert\dots\vert\mathbf{x}_p)$ and $\hat{\mathbf{y}}=\mathbf{X}\hat{\beta}$, then as $\hat{\beta}$ minimizes $\Vert\mathbf{y}-\mathbf{X}\beta\Vert^2$ the vector $\hat{\mathbf{y}}$ is an orthogonal projection of $\mathbf{y}$ on to the span of the $\mathbf{x}_i$. Therefore, $\mathbf{H}=\mathbf{X}(\mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^T$ is called the projection matrix.
+
+## Distributional Inferences
+
+Assume $y_i$ are uncorrelated with a constant variance $\sigma^2$ and the $x_i$ are fixed. 
+**Definition (Variance-Covariance Matrix)**
+$$\text{Var}(\hat{\beta})=(\mathbf{X}^T\mathbf{X})^{-1}\sigma^2$$
+which can be approximated by the unbiased estimator
+$$\hat{\sigma}^2=\frac{1}{N-p-1}\sum_{i=1}^N(y_i-\hat{y}_i)^2$$
