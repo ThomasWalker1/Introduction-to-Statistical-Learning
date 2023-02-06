@@ -1,0 +1,21 @@
+## Introduction
+
+The aim here is to predict an output vector $Y$ from an input vector $X=(X_1,\dots,X_p)^T$. If we assume that $E(Y\vert X)$ is linear (or can at least be approximated linearly) in the inputs then the linear regression has the form
+$$f(X)=\beta_0+\sum_{j=1}^pX_j\beta_j.$$
+The $\beta_j$ are parameters that we can choose. The least squares methods chooses the $\beta_j$s such that they minimize the residual sum of squares,
+$$\text{RSS}(\beta)=\sum_{i=1}^N(y_i-f(x_i))^2$$
+where the tuples $(x_i,y_i)$ are our training data. Note each $x_i$ is a vector with value $(x_{i1},\dots,x_{ip})
+
+## Finding the parameters
+Defining
+$$\mathbf{X}=\begin{pmatrix}1&x_{11}&\dots&x_{1p}\\\colon&&&\colon\\1&x_{N1}&\dots&x_{Np}\end{pmatrix}$$
+and 
+$$\mathbf{Y}=\begin{pmatrix}y_1\\\colon\\y_N\end{pmatrix}$$
+allows us to reformulate the least squares condition on $\beta=(\beta_0,\dots,\beta_{p})$ as
+$$\text{RSS}(\beta)=(\mathbf{y}-\mathbf{X}\beta)^T(\mathbf{y}-\mathbf{X}\beta)\geq\text{RSS}(\hat{\beta})\quad\forall\beta\in\mathbb{R}^{p+1}.$$
+Solving this one obtains the unique (provided $\mathbf{X}$ is full rank) solution
+$$\hat{\beta}(\mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^T\mathbf{y}$$
+
+## Geometrical Interpretation
+
+Let $\mathbf{X}=(\mathbf{x}_0\vert\dots\vert\mathbf{x}_p)$ and $\hat{\mathbf{y}}=\mathbf{X}\hat{\beta}$, then as $\hat{\beta}$ minimizes $\Vert\mathbf{y}-\mathbf{X}\beta\Vert^2$ the vector $\hat{\mathbf{y}}$ is an orthogonal projection of $\mathbf{y}$ on to the span of the $\mathbf{x}_i$. Therefore, $\mathbf{H}=\mathbf{X}(\mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^T$ is called the projection matrix.
