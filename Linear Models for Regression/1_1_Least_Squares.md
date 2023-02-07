@@ -68,4 +68,5 @@ $$\left(\hat{\beta}_j-z^{1-\frac{\alpha}{2}}\sqrt{v_j}\hat{\sigma},\hat{\beta}_j
 where $z^{1-\frac{\alpha}{2}}$ is the $1-\frac{\alpha}{2}$ percentile of the normal distribution. 
 
 The confidence set for the parameter vector $\beta$ is approximated by
-$$C_{\beta}=\left\{\beta\vert\left(\hat{\beta}-\beta)^T\mathbf{X}^T\mathbf{X}\left(\hat{\beta}-\beta\right)\leq\hat{\sigma}(\chi^2_{p+1})^{(1-\frac{\alpha}{2})}\right)\right\}$$
+$$C_{\beta}=\left\{\beta\big\vert\left(\hat{\beta}-\beta)^T\mathbf{X}^T\mathbf{X}\left(\hat{\beta}-\beta\right)\leq\hat{\sigma}(\chi^2_{p+1})^{(1-\frac{\alpha}{2})}\right)\right\}$$
+where $(\chi^2_{p+1})^{(1-\frac{\alpha}{2})}$ is $1-\frac{\alpha}{2}$ percentile of $\chi_{p+1}^2$
