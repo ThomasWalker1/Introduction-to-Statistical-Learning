@@ -4,7 +4,7 @@ The aim here is to predict an output vector $Y$ from an input vector $X=(X_1,\do
 $$f(X)=\beta_0+\sum_{j=1}^pX_j\beta_j.$$
 The $\beta_j$ are parameters that we can choose. The least squares methods chooses the $\beta_j$s such that they minimize the residual sum of squares,
 $$\text{RSS}(\beta)=\sum_{i=1}^N(y_i-f(x_i))^2$$
-where the tuples $(x_i,y_i)$ are our training data. Note each $x_i$ is a vector with value $(x_{i1},\dots,x_{ip})
+where the tuples $(x_i,y_i)$ are our training data. Note each $x_i$ is a vector with value $(x_{i1},\dots,x_{ip})$
 
 ## Finding the parameters
 Defining
@@ -70,3 +70,13 @@ where $z^{1-\frac{\alpha}{2}}$ is the $1-\frac{\alpha}{2}$ percentile of the nor
 The confidence set for the parameter vector $\beta$ is approximated by
 $$C_{\beta}=\left\{\beta\big\vert\left(\hat{\beta}-\beta)^T\mathbf{X}^T\mathbf{X}\left(\hat{\beta}-\beta\right)\leq\hat{\sigma}(\chi^2_{p+1})^{(1-\frac{\alpha}{2})}\right)\right\}$$
 where $(\chi^2_{p+1})^{(1-\frac{\alpha}{2})}$ is $1-\frac{\alpha}{2}$ percentile of $\chi_{p+1}^2$
+
+**Gauss-Markov Theorem**
+Suppose 
+$$\mathbf{y}=\mathbf{X}\beta+\mathbf{\epsilon}$$
+with the following assumptions:
+- $E(\epsilon_i)=0$
+- $\text{Var}(\epsilon_i)<\infty$
+- $\text{Cov}(\epsilon_i,\epsilon_j)=0$ for all $i\neq j$
+
+Then the least squares estimator for the parameters $\beta_j$ has the lowest sampling variance among all linear unbiased estimators.
