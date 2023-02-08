@@ -80,3 +80,19 @@ with the following assumptions:
 - $\text{Cov}(\epsilon_i,\epsilon_j)=0$ for all $i\neq j$
 
 Then the least squares estimator for the parameters $\beta_j$ has the lowest sampling variance among all linear unbiased estimators.
+
+## Regression with Multiple Inputs
+
+Consider the univariate case where $p=1$ and our model has no intercept, i.e.
+$$Y=X\beta+\epsilon$$
+
+Writing $\mathbf{x}=(x_1,\dots,x_N)^T$ and $\mathbf{y}=(y_1,\dots,y_N)^T$ we have
+$$\hat{\beta}=\frac{\langle\mathbf{x},\mathbf{y}\rangle}{\langle\mathbf{x},\mathbf{x}\rangle}$$
+
+Now let $p>1$, and let the model have an intercept and the data matrix $\mathbf{X}$ have $i^{\text{th}}$ column $\mathbf{x}_i$. Further suppose that $\langle\mathbf{x}_j,\mathbf{x}_k\rangle=0$ for $j\neq k$ then one has the following algorithm for comput $\hat{\beta}$
+
+**Algorithm:**
+1. Initialize $\mathbf{z}_0=\mathbf{x}_0=1$
+2. For $j=1,2,\dots,p$
+   - Regress $\mathbf{x}_j$ on $\mathbf{z}_0,\dots,\mathbf{z}_{j-1}$ to produce coefficients $\hat{\gamma}_{lj}=\frac{\langle\mathbf{z}_l,\mathbf{x}_j\rangle}{\langle\mathbf{z}_l,\mathbf{z}_l\rangle}$ for $l=0,\dots,j-1$ and residual vector $\mathbf{z}_j=\mathbf{x}_j-\sum_{k=1}^{j-1}\hat{\gamma}_{kj}\mathbf{z}_k$
+3. Regress $\mathbf{y}$ on residual $\mathbf{z}_p$ to get estimate for $\hat{\beta}_p$
