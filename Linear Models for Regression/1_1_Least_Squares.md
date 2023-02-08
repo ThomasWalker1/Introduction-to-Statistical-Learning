@@ -1,6 +1,6 @@
 ## Introduction
 
-The aim here is to predict an output vector $Y$ from an input vector $X=(X_1,\dots,X_p)^T$. If we assume that $E(Y\vert X)$ is linear (or can at least be approximated linearly) in the inputs then the linear regression has the form
+The aim here is to predict an output vector $Y$ from an input vector $X=(X_1,\dots,X_p)^T$. If we assume that $\mathbb{E}(Y\vert X)$ is linear (or can at least be approximated linearly) in the inputs then the linear regression has the form
 $$f(X)=\beta_0+\sum_{j=1}^pX_j\beta_j.$$
 The $\beta_j$ are parameters that we can choose. The least squares methods chooses the $\beta_j$s such that they minimize the residual sum of squares,
 $$\text{RSS}(\beta)=\sum_{i=1}^N(y_i-f(x_i))^2$$
@@ -30,10 +30,10 @@ which can be approximated by the unbiased estimator
 $$\hat{\sigma}^2=\frac{1}{N-p-1}\sum_{i=1}^N(y_i-\hat{y}_i)^2$$
 
 **Further Assumptions**:
-- Assume the $f(X)=\beta_0+\sum_{j=1}^pX_j\beta_j$ is the correct model for $E(Y\vert X)$
+- Assume the $f(X)=\beta_0+\sum_{j=1}^pX_j\beta_j$ is the correct model for $\mathbb{E}(Y\vert X)$
 - The deviation of $Y$ around its mean is Gaussian
 
-$$Y=E(Y\vert X_1,\dots,X_p)+\epsilon\text{ where }\epsilon\sim N(0,\sigma^2)$$
+$$Y=\mathbb{E}(Y\vert X_1,\dots,X_p)+\epsilon\text{ where }\epsilon\sim N(0,\sigma^2)$$
 
 From these assumptions
 - $\hat{\beta}\sim N(\beta,(\mathbf{X}^T\mathbf{X})^{-1}\sigma^2)$
@@ -56,7 +56,7 @@ $$H_0:\left(\beta_{n(1)},\dots,\beta_{n(p_1)}\right)^T=\mathbf{0}\quad H_1:\left
 
 Use the $F$-statistics
 $$F=\frac{\left(\text{RSS}_0-\text{RSS}_1\right)/(p_1-p_0)}{\text{RSS}_1/(N-p_1-1)}$$
-- $\text{RSS}_0$: Residual sum-of-squares of fitted model excluding $\beta_{n(i)}$ (which has $p_0$+1 parameters)
+- $\text{RSS}_0$: Residual sum-of-squares of fitted model excluding $\beta_{n(i)}$ (which has $p_0+1$ parameters)
 - $\text{RSS}_1$: Residual sum-of-squares of fitted model including $\beta_{n(i)}$ (which has $p_1+1$) parameters
 
 $$F\sim F_{p_1-p_0, N-p_1-1}$$
