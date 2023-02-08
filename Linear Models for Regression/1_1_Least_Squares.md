@@ -91,8 +91,37 @@ $$\hat{\beta}=\frac{\langle\mathbf{x},\mathbf{y}\rangle}{\langle\mathbf{x},\math
 
 Now let $p>1$, and let the model have an intercept and the data matrix $\mathbf{X}$ have $i^{\text{th}}$ column $\mathbf{x}_i$. Further suppose that $\langle\mathbf{x}_j,\mathbf{x}_k\rangle=0$ for $j\neq k$ then one has the following algorithm for comput $\hat{\beta}$
 
-**Algorithm:**
+**Algorithm (Gram-Schmidt):**
 1. Initialize $\mathbf{z}_0=\mathbf{x}_0=1$
 2. For $j=1,2,\dots,p$
    - Regress $\mathbf{x}_j$ on $\mathbf{z}_0,\dots,\mathbf{z}_{j-1}$ to produce coefficients $\hat{\gamma}_{lj}=\frac{\langle\mathbf{z}_l,\mathbf{x}_j\rangle}{\langle\mathbf{z}_l,\mathbf{z}_l\rangle}$ for $l=0,\dots,j-1$ and residual vector $\mathbf{z}_j=\mathbf{x}_j-\sum_{k=1}^{j-1}\hat{\gamma}_{kj}\mathbf{z}_k$
 3. Regress $\mathbf{y}$ on residual $\mathbf{z}_p$ to get estimate for $\hat{\beta}_p$
+
+The $\mathbf{z}_j$ are orthogonal and form a basis for the column space of $\mathbf{X}$, therefore, the least squares projection onto this subspace is $\hat{\mathbf{y}}$.
+
+$\hat{\beta}_j$ represents the additional contribution of $\mathbf{x}_j$ on $\mathbf{y}$, after $\mathbf{x}_j$ has been adjusted for $\mathbf{x}_0,\dots,\mathbf{x}_{j-1},\mathbf{x}_{j+1},\dots,\mathbf{x}_p$
+
+If $\mathbf{x}_p$ is highly correlated with some $\mathbf{x}_i$, then $\mathbf{z}_p\approx \mathbf{0}$ (similarly, for the other variables in the correlated set).
+
+As $\hat{\beta}_p=\frac{\langle \mathbf{z}_p,\mathbf{y}\rangle}{\langle\mathbf{z}_p,\mathbf{z}_p\rangle}$ we have
+$$\text{Var}(\hat{\beta}_p)=\frac{\sigma^2}{\Vert \mathbf{z}_p\Vert^2},$$
+so the precision of the estimate $\hat{\beta}_p$ depends on how it correlates with the other $\mathbf{x}_i$.
+
+Note that one can simply rearrange the features $\mathbf{x}_j$ to put any of them in position $p$ and the above analysis still holds.
+
+## Regression with Multiple Outputs
+
+Now consider the case where we have multiple outputs $Y_1,\dots, Y_K$ which we want to predict from the $X_1,\dots,X_p$. Assume a linear model
+$$Y_k = \beta_{0k}+\sum_{j=1}^pX_j\beta_{jk}+\epsilon_k$$
+written in matrix notation as
+$$\mathbf{Y}=\mathbf{XB}+\mathbf{E}$$
+- $\mathbf{Y}$: Response Matrix
+- $\mathbf{X}$: Input Matrix
+- $\mathbf{B}$: Parameter Matrix
+- $\mathbf{E}$: Error MAtrix
+
+Our loss function is generalized to the following
+$$\text{RSS}(\mathbf{B})=\text{tr}\left[\left(\mathbf{Y}-\mathbf{XB})^T\left(\mathbf{Y}-\mathbf{XB}\right)\right)\right]$$
+which is minimized by
+$$\hat{\mathbf{B}}=(\mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^T\mathbf{Y}$$
+One can see from this that the coefficients for the $k^{\text{th}}$ outcome are simply the least squares estimates in the regression of $\mathbf{y}_k$ on $\mathbf{x}_0,\dots,\mathbf{x}_p$.
