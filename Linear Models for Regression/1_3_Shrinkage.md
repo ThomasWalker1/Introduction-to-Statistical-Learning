@@ -22,3 +22,6 @@ $$\hat{\beta}^{\text{ridge}}=(\mathbf{X}^T\mathbf{X}+\lambda\mathbf{I})^{-1}\mat
 
 The constraint for Lasso shrinkage is defined as
 $$\begin{gather*}\hat{\beta}^{\text{lasso}}=\argmin_{\beta}\sum_{i=1}^N\left(y_i-\beta_0-\sum_{j=1}^px_{ij}\beta_j\right)^2\\\text{subject to}\sum_{j=1}^p\vert\beta_j\vert\leq t\end{gather*}$$
+Similar to above we re-parametrize the constant $\beta_0$ by standardizing the predictors, $\hat{\beta_0}=\bar{y}$. Then we fit the model without the intercept.
+
+The different size penalty results in non-linear solutions in $y_i$. 
