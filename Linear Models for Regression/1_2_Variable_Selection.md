@@ -27,7 +27,7 @@ A greedy algorithm producing a nested sequence of models.
 **Drawbacks**
 - Can only be used when $N>p$
 
-### Forward-Stagewise Regression
+## Forward-Stagewise Regression
 
 1. Start with intercept equal to $\bar{y}$ and centered predictors with coefficients $0$
 2. Identify variable most correlated with residual
