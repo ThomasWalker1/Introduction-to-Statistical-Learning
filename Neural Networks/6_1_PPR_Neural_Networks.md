@@ -33,3 +33,8 @@ A neural networks is a two-stage regression or classification model.
 
 ### $K$-Class Classification
 
+The set up is as follows. 
+- $K$ target measurements $Y_k, k=1,2,\dots, k$
+- Derived features $Z_m$. Result of linear combinations of inputs $X_i$
+
+The targets $Y_k$ are modelled as linear combinations of the $Z_m$.
